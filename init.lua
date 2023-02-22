@@ -200,6 +200,7 @@ Install:andUse("FadeLogo",
                }
 )
 
+Install:andUse("CircleClock", {})
 
 local previousPowerSource = hs.battery.powerSource()
 
@@ -284,6 +285,10 @@ hs.hotkey.bind(hyper, 'w', function()
   hs.urlevent.openURL("https://shopify.workplace.com")
 end)
 
+hs.hotkey.bind({"cmd", "shift"}, "0", function()
+  caffeineClicked()
+end)
+
 hs.hotkey.bind(hyper, ';', function()
   local chargingMark = hs.battery.isCharging() and " Charging: " .. hs.battery.timeToFullCharge() .. "min until fully charged. " or ""
   local batteryPercentage = hs.battery.percentage()
@@ -304,7 +309,5 @@ function reloadConfig(files)
   end
 end
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-
-
 
 hs.notify.show("Welcome to Hammerspoon", "Have fun!", "")
